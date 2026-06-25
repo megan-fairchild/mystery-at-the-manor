@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clue Cards - Mystery at the Manor</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .clue-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .clue-card {
+      border: 3px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      break-inside: avoid;
+    }
+
+    .clue-card.scarlet { border-color: #C41E3A; background: rgba(196, 30, 58, 0.08); }
+    .clue-card.mustard { border-color: #D4A017; background: rgba(212, 160, 23, 0.08); }
+    .clue-card.peacock { border-color: #1B6B93; background: rgba(27, 107, 147, 0.08); }
+    .clue-card.plum { border-color: #6B2D5B; background: rgba(107, 45, 91, 0.08); }
+    .clue-card.green { border-color: #2D6B3F; background: rgba(45, 107, 63, 0.08); }
+    .clue-card.white-card { border-color: #AAAAAA; background: rgba(200, 200, 200, 0.08); }
+
+    .clue-card .clue-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
+
+    .clue-card .clue-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .clue-card .clue-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .clue-card .clue-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    .print-btn {
+      display: block;
+      margin: 2rem auto;
+      padding: 0.8rem 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .print-btn:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    @media print {
+      .top-nav, .print-btn, .page-header .subtitle { display: none; }
+      body { background: white; color: #1a1a1a; }
+      .clue-card { border-width: 2px; page-break-inside: avoid; }
+      .clue-card .clue-text { color: #1a1a1a; }
+      .clue-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <span class="nav-brand">The Manor</span>
+    <a href="../event-hub.html">Hub</a>
+    <a href="../activities.html">Activities</a>
+    <a href="index.html">Evidence Room</a>
+  </nav>
+
+  <header class="page-header">
+    <div class="emblem">&#128270;</div>
+    <h1>Clue Cards</h1>
+    <p class="subtitle">Print, cut, and hide these around the yard in colored envelopes</p>
+  </header>
+
+  <div class="container">
+    <button class="print-btn" onclick="window.print()" aria-label="Print clue cards">&#128424; Print Clue Cards</button>
+
+    <div class="clue-grid">
+      <div class="clue-card scarlet">
+        <div class="clue-label">Scarlet Envelope</div>
+        <div class="clue-icon">&#128308;</div>
+        <p class="clue-text">"The thief was NOT wearing blue."</p>
+        <p class="clue-hint">This eliminates Mrs. Peacock as a suspect.</p>
+      </div>
+
+      <div class="clue-card mustard">
+        <div class="clue-label">Mustard Envelope</div>
+        <div class="clue-icon">&#128993;</div>
+        <p class="clue-text">"The weapon is NOT the candlestick and NOT the rope."</p>
+        <p class="clue-hint">Only a few weapons remain...</p>
+      </div>
+
+      <div class="clue-card peacock">
+        <div class="clue-label">Peacock Envelope</div>
+        <div class="clue-icon">&#128309;</div>
+        <p class="clue-text">"The trophy was hidden somewhere with WATER nearby."</p>
+        <p class="clue-hint">Think: where is there water outside?</p>
+      </div>
+
+      <div class="clue-card plum">
+        <div class="clue-label">Plum Envelope</div>
+        <div class="clue-icon">&#128995;</div>
+        <p class="clue-text">"The thief's favorite color is GREEN."</p>
+        <p class="clue-hint">Which suspect likes green?</p>
+      </div>
+
+      <div class="clue-card green">
+        <div class="clue-label">Green Envelope</div>
+        <div class="clue-icon">&#128994;</div>
+        <p class="clue-text">"The weapon is something you use in the KITCHEN."</p>
+        <p class="clue-hint">Not a wrench, not a lead pipe...</p>
+      </div>
+
+      <div class="clue-card white-card">
+        <div class="clue-label">White Envelope</div>
+        <div class="clue-icon">&#9898;</div>
+        <p class="clue-text">"The hiding spot is OUTSIDE, not inside the house."</p>
+        <p class="clue-hint">The trophy is somewhere in the yard.</p>
+      </div>
+    </div>
+
+    <div class="day-card mt-3">
+      <div class="day-body">
+        <h3 style="color:var(--accent); font-family:'Playfair Display',serif; margin-bottom:0.75rem;">Answer Key (for the host only!)</h3>
+        <p><strong>WHO:</strong> Mr. Green</p>
+        <p><strong>WHERE:</strong> By the garden hose / outdoor faucet</p>
+        <p><strong>WITH WHAT:</strong> The knife</p>
+        <p class="mt-1 text-muted" style="font-size:0.85rem;">Hide the golden trophy near your garden hose or outdoor faucet before guests arrive. Seal this answer in an envelope for the dramatic reveal.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
