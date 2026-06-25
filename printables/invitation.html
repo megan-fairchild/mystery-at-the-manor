@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Printable Invitation - Mystery at the Manor</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .print-invitation {
+      max-width: 5.5in;
+      margin: 2rem auto;
+      border: 3px solid var(--accent);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--card-bg);
+      position: relative;
+    }
+
+    .print-invitation .invite-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .print-invitation .invite-body {
+      padding: 1.5rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .print-invitation h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .print-invitation .invite-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .print-invitation .invite-detail-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.6rem 1rem;
+      text-align: left;
+      margin: 0 auto;
+      max-width: 320px;
+    }
+
+    .print-invitation .detail-label {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .print-invitation .detail-value {
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .print-invitation .address-block {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .print-invitation .address-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .print-invitation .address-lines {
+      min-height: 60px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.5rem;
+    }
+
+    .print-invitation .address-line {
+      border-bottom: 1px dashed rgba(154, 154, 176, 0.3);
+      height: 1.8rem;
+      margin: 0 1rem;
+    }
+
+    .print-invitation .dress-code {
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .print-invitation .rsvp-line {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .print-btn {
+      display: block;
+      margin: 2rem auto;
+      padding: 0.8rem 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .print-btn:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .print-instructions {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    @media print {
+      .top-nav, .print-btn, .page-header, .print-instructions { display: none; }
+      body { background: white; padding: 0; margin: 0; }
+
+      .print-invitation {
+        border: 3px solid #8B6914;
+        background: white;
+        margin: 0 auto;
+        box-shadow: none;
+        max-width: 5.5in;
+      }
+
+      .print-invitation h2 { color: #8B6914; }
+      .print-invitation .detail-label { color: #8B6914; }
+      .print-invitation .detail-value { color: #1a1a1a; }
+      .print-invitation .invite-subtitle { color: #555; }
+      .print-invitation .dress-code { color: #555; }
+      .print-invitation .address-label { color: #777; }
+      .print-invitation .rsvp-line { color: #777; }
+      .print-invitation .address-line { border-bottom-color: #ccc; }
+      .print-invitation .address-block { border-top-color: #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <span class="nav-brand">The Manor</span>
+    <a href="../event-hub.html">Hub</a>
+    <a href="index.html">Evidence Room</a>
+  </nav>
+
+  <header class="page-header">
+    <div class="emblem">&#128233;</div>
+    <h1>Printable Invitation</h1>
+    <p class="subtitle">Print and hand-deliver or mail to your guests</p>
+  </header>
+
+  <div class="container">
+    <button class="print-btn" onclick="window.print()" aria-label="Print invitation">&#128424; Print Invitation</button>
+    <p class="print-instructions">Prints best on cardstock. Fill in the address by hand for a personal touch.</p>
+
+    <div class="print-invitation">
+      <img src="../assets/invitation-hero.png" alt="Mysterious Victorian manor at twilight with colorful character silhouettes" class="invite-image">
+
+      <div class="invite-body">
+        <h2>Mystery at the Manor</h2>
+        <p class="invite-subtitle">You are cordially summoned to an evening of intrigue, suspects, and cinema.</p>
+
+        <div class="invite-detail-grid">
+          <span class="detail-label">Date</span>
+          <span class="detail-value">Saturday, August 22, 2026</span>
+
+          <span class="detail-label">Time</span>
+          <span class="detail-value">6:00 PM</span>
+
+          <span class="detail-label">Featuring</span>
+          <span class="detail-value">CLUE (1985) under the stars</span>
+
+          <span class="detail-label">Dinner</span>
+          <span class="detail-value">Themed feast at 6:30 PM</span>
+
+          <span class="detail-label">Movie</span>
+          <span class="detail-value">Screening begins at 8:30 PM</span>
+        </div>
+
+        <div class="address-block">
+          <p class="address-label">Location</p>
+          <div class="address-lines">
+            <div class="address-line"></div>
+            <div class="address-line"></div>
+            <div class="address-line"></div>
+          </div>
+        </div>
+
+        <p class="dress-code">Dress code: Suspect chic. Pick your Clue character color.<br>Bring a blanket and a lawn chair for the movie.</p>
+
+        <p class="rsvp-line">RSVP to: ________________________________</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

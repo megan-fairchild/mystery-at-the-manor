@@ -17,10 +17,13 @@
     <a href="clothing.html">Wardrobe</a>
   </nav>
 
-  <header class="page-header">
-    <div class="emblem">&#127860;</div>
-    <h1>The Provisions</h1>
-    <p class="subtitle">A feast fit for the manor's most suspicious guests</p>
+  <header class="page-header" style="position:relative; overflow:hidden; padding:0;">
+    <img src="assets/meals-header.png" alt="Dramatic dinner party table with candelabras, cocktails, and themed dishes" style="width:100%; height:280px; object-fit:cover; display:block;">
+    <div style="position:absolute; bottom:0; left:0; right:0; padding:2rem 1.5rem; background:linear-gradient(to top, var(--bg) 0%, rgba(26,26,46,0.8) 60%, transparent 100%);">
+      <div class="emblem">&#127860;</div>
+      <h1>The Provisions</h1>
+      <p class="subtitle">A feast fit for the manor's most suspicious guests</p>
+    </div>
   </header>
 
   <div class="container">
@@ -269,24 +272,30 @@
     </div>
 
     <div class="recipe-card">
-      <h3>"Mr. Green's" Garden Salad</h3>
-      <p class="recipe-subtitle">Fresh, crisp, and entirely innocent. Or is it?</p>
+      <h3>"Mr. Green's" Corn Salad</h3>
+      <p class="recipe-subtitle">Fresh, sweet, and entirely innocent. Or is it?</p>
       <div class="ingredients">
         <h4>Ingredients</h4>
         <ul>
-          <li>1 large head romaine lettuce, chopped</li>
-          <li>1 cup cherry tomatoes, halved</li>
-          <li>1 cucumber, sliced</li>
-          <li>1/2 red onion, thinly sliced</li>
-          <li>1/4 cup kalamata olives</li>
-          <li>Italian dressing</li>
+          <li>6 ears fresh corn, kernels cut off (or 4 cups frozen, thawed)</li>
+          <li>1/2 cup diced red bell pepper</li>
+          <li>1/4 cup diced red onion</li>
+          <li>1/4 cup fresh cilantro, chopped</li>
+          <li>1 jalape&#241;o, seeded and minced (optional)</li>
+          <li>2 tbsp olive oil</li>
+          <li>2 tbsp lime juice</li>
+          <li>1/2 tsp cumin</li>
+          <li>Salt and pepper to taste</li>
+          <li>1/4 cup crumbled cotija or feta cheese</li>
         </ul>
       </div>
       <div class="directions">
         <h4>Directions</h4>
         <ol>
-          <li>Combine all vegetables in a large bowl.</li>
-          <li>Toss with dressing just before serving.</li>
+          <li>If using fresh corn, char kernels in a hot skillet for 3-4 minutes for smoky flavor. Let cool.</li>
+          <li>Combine corn, bell pepper, red onion, cilantro, and jalape&#241;o in a large bowl.</li>
+          <li>Whisk together olive oil, lime juice, cumin, salt, and pepper. Pour over salad.</li>
+          <li>Toss to combine. Top with crumbled cheese. Serve at room temp or chilled.</li>
         </ol>
       </div>
     </div>
@@ -452,13 +461,13 @@
           <input type="checkbox" id="prod-3"><label for="prod-3">6 lemons</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" id="prod-4"><label for="prod-4">1 head romaine lettuce</label>
+          <input type="checkbox" id="prod-4"><label for="prod-4">6 ears fresh corn (or 4 cups frozen corn)</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" id="prod-5"><label for="prod-5">Cherry tomatoes (1 cup)</label>
+          <input type="checkbox" id="prod-5"><label for="prod-5">1 red bell pepper</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" id="prod-6"><label for="prod-6">1 cucumber</label>
+          <input type="checkbox" id="prod-6"><label for="prod-6">Fresh cilantro (1 bunch)</label>
         </div>
         <div class="checkbox-item">
           <input type="checkbox" id="prod-7"><label for="prod-7">1 red onion</label>
@@ -560,10 +569,10 @@
           <input type="checkbox" id="pantry-11"><label for="pantry-11">Apple cider vinegar</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" id="pantry-12"><label for="pantry-12">Italian dressing</label>
+          <input type="checkbox" id="pantry-12"><label for="pantry-12">Limes (2, for corn salad)</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" id="pantry-13"><label for="pantry-13">Kalamata olives (1/4 cup)</label>
+          <input type="checkbox" id="pantry-13"><label for="pantry-13">Cotija or feta cheese (1/4 cup, for corn salad)</label>
         </div>
         <div class="checkbox-item">
           <input type="checkbox" id="pantry-14"><label for="pantry-14">Popcorn (large bag or kernels)</label>
