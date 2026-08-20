@@ -122,15 +122,15 @@
     }
 
     @media print {
-      .top-nav, .print-btn, .page-header, .version-toggle, .answer-key { display: none; }
+      .top-nav, .print-btn, .page-header, .version-toggle, .answer-key { display: none !important; height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
       body { background: white; color: #1a1a1a; margin: 0; padding: 0; }
-      .container { padding: 0; max-width: none; }
+      .container { padding: 0; margin: 0; max-width: none; }
       .clue-version { display: none !important; }
       .clue-version.active { display: block !important; }
-      .clue-grid { display: block; }
+      .clue-grid { display: block; margin: 0; padding: 0; }
       .clue-card {
         border-width: 3px;
-        page-break-after: always;
+        page-break-before: always;
         page-break-inside: avoid;
         width: 6in;
         height: 4in;
@@ -144,7 +144,6 @@
         align-items: center;
         justify-content: center;
       }
-      .clue-card:last-child { page-break-after: auto; }
       .clue-card .clue-text { color: #1a1a1a; font-size: 1.1rem; }
       .clue-card .clue-label { font-size: 0.9rem; margin-bottom: 0.5rem; }
       .clue-card .clue-hint { font-size: 0.85rem; margin-top: 0.5rem; }
