@@ -5,6 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Provisions - Mystery at the Manor</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .grocery-print-btn {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.7rem 1.8rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .grocery-print-btn:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      #grocery-print-area, #grocery-print-area * { visibility: visible; }
+      #grocery-print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white;
+        color: #1a1a1a;
+        padding: 0.5in;
+      }
+      #grocery-print-area .section-heading { color: #1a1a1a; }
+      #grocery-print-area .grocery-section { background: white; border: 1px solid #ccc; break-inside: avoid; }
+      #grocery-print-area .grocery-section h3 { color: #1a1a1a; }
+      #grocery-print-area label { color: #1a1a1a; }
+      .grocery-print-btn { display: none; }
+    }
+  </style>
 </head>
 <body>
   <nav class="top-nav">
@@ -430,7 +468,9 @@
     </div>
 
     <!-- GROCERY LIST -->
+    <div id="grocery-print-area">
     <h2 class="section-heading">&#128722; The Grocery List</h2>
+    <button class="grocery-print-btn" onclick="window.print()" aria-label="Print grocery list">&#128424; Print Grocery List</button>
     <p class="text-muted mb-2">Check off items as you shop. Your progress saves automatically. Swap the main course above to update the protein section.</p>
 
     <div class="grocery-section">
@@ -693,6 +733,7 @@
         </div>
       </div>
     </div>
+    </div><!-- end grocery-print-area -->
 
     <!-- PREP TIMELINE -->
     <div class="prep-kit">
