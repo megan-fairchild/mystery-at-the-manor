@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Cards - Mystery at the Manor</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .food-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .food-card {
+      border: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(212, 160, 23, 0.05);
+    }
+
+    .food-card .food-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .food-card .food-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .food-card .food-description {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    .food-card.drinks { border-color: #C41E3A; }
+    .food-card.buffet { border-color: var(--accent); }
+    .food-card.snacks { border-color: #D4A017; }
+    .food-card.dessert { border-color: #1B6B93; }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-top: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .print-btn {
+      display: block;
+      margin: 2rem auto;
+      padding: 0.8rem 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .print-btn:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .fold-instructions {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    @media print {
+      .top-nav, .print-btn, .page-header, .fold-instructions, .section-label { display: none !important; }
+      body { background: white; color: #1a1a1a; margin: 0; padding: 0; }
+      .container { padding: 0; margin: 0; max-width: none; }
+      .food-cards-grid { display: block; margin: 0; padding: 0; }
+      .food-card {
+        page-break-inside: avoid;
+        width: 5in;
+        height: 3in;
+        margin: 0 auto 0.25in auto;
+        padding: 0.75in 0.5in;
+        border: 2px solid #333;
+        border-radius: 0;
+        background: white;
+        box-sizing: border-box;
+      }
+      .food-card:nth-child(odd) {
+        page-break-after: avoid;
+      }
+      .food-card:nth-child(2n) {
+        page-break-after: always;
+      }
+      .food-card .food-name { color: #1a1a1a; font-size: 1.3rem; }
+      .food-card .food-subtitle { color: #444; }
+      .food-card .food-description { color: #555; }
+
+      @page {
+        size: letter;
+        margin: 0.5in;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <span class="nav-brand">The Manor</span>
+    <a href="../event-hub.html">Hub</a>
+    <a href="../meals.html">Meals</a>
+    <a href="index.html">Evidence Room</a>
+  </nav>
+
+  <header class="page-header">
+    <h1>Buffet Food Cards</h1>
+    <p class="subtitle">Print, cut, and fold these tent cards to label each dish</p>
+  </header>
+
+  <div class="container">
+    <button class="print-btn" onclick="window.print()" aria-label="Print food cards">&#128424; Print Food Cards</button>
+    <p class="fold-instructions">Each card prints at 5" x 3". Cut along the border, fold in half, and stand in front of each dish.</p>
+
+    <p class="section-label">Drinks</p>
+    <div class="food-cards-grid">
+      <div class="food-card drinks">
+        <div class="food-name">Miss Scarlet's Strawberry Lemonade</div>
+        <div class="food-subtitle">"A bold, crimson refreshment"</div>
+      </div>
+
+      <div class="food-card drinks">
+        <div class="food-name">Professor Plum's Purple Punch</div>
+        <div class="food-subtitle">"Mysterious, deep, and dangerously drinkable"</div>
+      </div>
+    </div>
+
+    <p class="section-label">The Buffet</p>
+    <div class="food-cards-grid">
+      <div class="food-card buffet">
+        <div class="food-name">"Mrs. Peacock's Favorite"</div>
+        <div class="food-subtitle">Watermelon &amp; Pepper Cheddar Skewers</div>
+        <div class="food-description">Inspired by the Whatcom Watermelon Salad</div>
+      </div>
+
+      <div class="food-card buffet">
+        <div class="food-name">"Mr. Boddy" Smoked Ribs</div>
+        <div class="food-subtitle">"The victim never tasted so good"</div>
+      </div>
+
+      <div class="food-card buffet">
+        <div class="food-name">"Monkey Brains" Stuffed Onions</div>
+        <div class="food-subtitle">"Monkey brains, though popular in Cantonese cuisine, are not often found in Washington, D.C."</div>
+      </div>
+
+      <div class="food-card buffet">
+        <div class="food-name">"Mrs. Peacock's" Blue Cheese Coleslaw</div>
+        <div class="food-subtitle">"Elegant, tangy, and just a little suspicious"</div>
+      </div>
+
+      <div class="food-card buffet">
+        <div class="food-name">"Mr. Green's" Corn Salad</div>
+        <div class="food-subtitle">"Fresh, sweet, and entirely innocent. Or is it?"</div>
+      </div>
+
+      <div class="food-card buffet">
+        <div class="food-name">"The Candlestick" Cornbread</div>
+        <div class="food-subtitle">"Golden, warm, and shaped like the murder weapon"</div>
+      </div>
+
+      <div class="food-card buffet">
+        <div class="food-name">"The Table Centerpiece" Fruit Platter</div>
+        <div class="food-subtitle">"Character-colored fruits - eat the evidence"</div>
+      </div>
+
+      <div class="food-card buffet">
+        <div class="food-name">"The Billiard Room" Crudit&#233; Platter</div>
+        <div class="food-subtitle">"Fresh, crisp, and arranged with precision"</div>
+      </div>
+    </div>
+
+    <p class="section-label">Movie Snacks</p>
+    <div class="food-cards-grid">
+      <div class="food-card snacks">
+        <div class="food-name">"The Weapon Rack" Popcorn Bar</div>
+        <div class="food-subtitle">"Choose your weapon... of flavor"</div>
+        <div class="food-description">Butter / Salt / Caramel / Spicy / Parmesan / M&amp;Ms</div>
+      </div>
+    </div>
+
+    <p class="section-label">Dessert</p>
+    <div class="food-cards-grid">
+      <div class="food-card dessert">
+        <div class="food-name">"Shark Fin Soup" Jello Cups</div>
+        <div class="food-subtitle">"This is... uh... what is this?" "Shark fin soup."</div>
+      </div>
+
+      <div class="food-card dessert">
+        <div class="food-name">"Dog Poop" No-Bake Cookies</div>
+        <div class="food-subtitle">"They look suspicious. They taste like perfection."</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
