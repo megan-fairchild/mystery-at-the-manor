@@ -26,6 +26,17 @@
       background: rgba(212, 160, 23, 0.05);
     }
 
+    .food-card .food-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .food-card .food-panel-back {
+      display: none;
+    }
+
     .food-card .food-name {
       font-family: 'Playfair Display', serif;
       font-size: 1.4rem;
@@ -100,28 +111,49 @@
       .food-cards-grid { display: block; margin: 0; padding: 0; }
       .food-card {
         page-break-inside: avoid;
+        page-break-after: always;
         width: 5in;
-        height: 3in;
-        margin: 0 auto 0.25in auto;
-        padding: 0.75in 0.5in;
+        height: 5in;
+        margin: 0 auto;
+        padding: 0;
         border: 2px solid #333;
         border-radius: 0;
         background: white;
         box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: stretch;
+        position: relative;
       }
-      .food-card:nth-child(odd) {
-        page-break-after: avoid;
+      .food-card:last-child { page-break-after: auto; }
+      .food-card .food-panel {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5in;
+        box-sizing: border-box;
+        border-bottom: 1px dashed #999;
       }
-      .food-card:nth-child(2n) {
-        page-break-after: always;
+      .food-card .food-panel-back {
+        display: flex;
+        height: 50%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5in;
+        box-sizing: border-box;
+        transform: rotate(180deg);
       }
       .food-card .food-name { color: #1a1a1a; font-size: 1.3rem; }
-      .food-card .food-subtitle { color: #444; }
+      .food-card .food-subtitle { color: #444; font-size: 0.8rem; }
       .food-card .food-description { color: #555; }
 
       @page {
-        size: letter;
-        margin: 0.5in;
+        size: 5.5in 5.5in;
+        margin: 0.25in;
       }
     }
   </style>
@@ -141,84 +173,162 @@
 
   <div class="container">
     <button class="print-btn" onclick="window.print()" aria-label="Print food cards">&#128424; Print Food Cards</button>
-    <p class="fold-instructions">Each card prints at 5" x 3". Cut along the border, fold in half, and stand in front of each dish.</p>
+    <p class="fold-instructions">Each card prints with the name on both halves (one inverted). Cut along the border, fold along the dashed line, and stand as a tent in front of each dish.</p>
 
     <p class="section-label">Drinks</p>
     <div class="food-cards-grid">
       <div class="food-card drinks">
-        <div class="food-name">Miss Scarlet's Strawberry Lemonade</div>
-        <div class="food-subtitle">"A bold, crimson refreshment"</div>
+        <div class="food-panel-back">
+          <div class="food-name">Miss Scarlet's Strawberry Lemonade</div>
+          <div class="food-subtitle">"A bold, crimson refreshment"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">Miss Scarlet's Strawberry Lemonade</div>
+          <div class="food-subtitle">"A bold, crimson refreshment"</div>
+        </div>
       </div>
 
       <div class="food-card drinks">
-        <div class="food-name">Professor Plum's Purple Punch</div>
-        <div class="food-subtitle">"Mysterious, deep, and dangerously drinkable"</div>
+        <div class="food-panel-back">
+          <div class="food-name">Professor Plum's Purple Punch</div>
+          <div class="food-subtitle">"Mysterious, deep, and dangerously drinkable"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">Professor Plum's Purple Punch</div>
+          <div class="food-subtitle">"Mysterious, deep, and dangerously drinkable"</div>
+        </div>
       </div>
     </div>
 
     <p class="section-label">The Buffet</p>
     <div class="food-cards-grid">
       <div class="food-card buffet">
-        <div class="food-name">"Mrs. Peacock's Favorite"</div>
-        <div class="food-subtitle">Watermelon &amp; Pepper Cheddar Skewers</div>
-        <div class="food-description">Inspired by the Whatcom Watermelon Salad</div>
+        <div class="food-panel-back">
+          <div class="food-name">"Mrs. Peacock's Favorite"</div>
+          <div class="food-subtitle">Watermelon &amp; Pepper Cheddar Skewers</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"Mrs. Peacock's Favorite"</div>
+          <div class="food-subtitle">Watermelon &amp; Pepper Cheddar Skewers</div>
+          <div class="food-description">Inspired by the Whatcom Watermelon Salad</div>
+        </div>
       </div>
 
       <div class="food-card buffet">
-        <div class="food-name">"Mr. Boddy" Smoked Ribs</div>
-        <div class="food-subtitle">"The victim never tasted so good"</div>
+        <div class="food-panel-back">
+          <div class="food-name">"Mr. Boddy" Smoked Ribs</div>
+          <div class="food-subtitle">"The victim never tasted so good"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"Mr. Boddy" Smoked Ribs</div>
+          <div class="food-subtitle">"The victim never tasted so good"</div>
+        </div>
       </div>
 
       <div class="food-card buffet">
-        <div class="food-name">"Monkey Brains" Stuffed Onions</div>
-        <div class="food-subtitle">"Monkey brains, though popular in Cantonese cuisine, are not often found in Washington, D.C."</div>
+        <div class="food-panel-back">
+          <div class="food-name">"Monkey Brains" Stuffed Onions</div>
+          <div class="food-subtitle">"Not often found in Washington, D.C."</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"Monkey Brains" Stuffed Onions</div>
+          <div class="food-subtitle">"Monkey brains, though popular in Cantonese cuisine, are not often found in Washington, D.C."</div>
+        </div>
       </div>
 
       <div class="food-card buffet">
-        <div class="food-name">"Mrs. Peacock's" Blue Cheese Coleslaw</div>
-        <div class="food-subtitle">"Elegant, tangy, and just a little suspicious"</div>
+        <div class="food-panel-back">
+          <div class="food-name">"Mrs. Peacock's" Blue Cheese Coleslaw</div>
+          <div class="food-subtitle">"Elegant, tangy, and just a little suspicious"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"Mrs. Peacock's" Blue Cheese Coleslaw</div>
+          <div class="food-subtitle">"Elegant, tangy, and just a little suspicious"</div>
+        </div>
       </div>
 
       <div class="food-card buffet">
-        <div class="food-name">"Mr. Green's" Corn Salad</div>
-        <div class="food-subtitle">"Fresh, sweet, and entirely innocent. Or is it?"</div>
+        <div class="food-panel-back">
+          <div class="food-name">"Mr. Green's" Corn Salad</div>
+          <div class="food-subtitle">"Fresh, sweet, and entirely innocent. Or is it?"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"Mr. Green's" Corn Salad</div>
+          <div class="food-subtitle">"Fresh, sweet, and entirely innocent. Or is it?"</div>
+        </div>
       </div>
 
       <div class="food-card buffet">
-        <div class="food-name">"The Candlestick" Cornbread</div>
-        <div class="food-subtitle">"Golden, warm, and shaped like the murder weapon"</div>
+        <div class="food-panel-back">
+          <div class="food-name">"The Candlestick" Cornbread</div>
+          <div class="food-subtitle">"Golden, warm, and shaped like the murder weapon"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"The Candlestick" Cornbread</div>
+          <div class="food-subtitle">"Golden, warm, and shaped like the murder weapon"</div>
+        </div>
       </div>
 
       <div class="food-card buffet">
-        <div class="food-name">"The Table Centerpiece" Fruit Platter</div>
-        <div class="food-subtitle">"Character-colored fruits - eat the evidence"</div>
+        <div class="food-panel-back">
+          <div class="food-name">"The Table Centerpiece" Fruit Platter</div>
+          <div class="food-subtitle">"Character-colored fruits - eat the evidence"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"The Table Centerpiece" Fruit Platter</div>
+          <div class="food-subtitle">"Character-colored fruits - eat the evidence"</div>
+        </div>
       </div>
 
       <div class="food-card buffet">
-        <div class="food-name">"The Billiard Room" Crudit&#233; Platter</div>
-        <div class="food-subtitle">"Fresh, crisp, and arranged with precision"</div>
+        <div class="food-panel-back">
+          <div class="food-name">"The Billiard Room" Crudit&#233; Platter</div>
+          <div class="food-subtitle">"Fresh, crisp, and arranged with precision"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"The Billiard Room" Crudit&#233; Platter</div>
+          <div class="food-subtitle">"Fresh, crisp, and arranged with precision"</div>
+        </div>
       </div>
     </div>
 
     <p class="section-label">Movie Snacks</p>
     <div class="food-cards-grid">
       <div class="food-card snacks">
-        <div class="food-name">"The Weapon Rack" Popcorn Bar</div>
-        <div class="food-subtitle">"Choose your weapon... of flavor"</div>
-        <div class="food-description">Butter / Salt / Caramel / Spicy / Parmesan / M&amp;Ms</div>
+        <div class="food-panel-back">
+          <div class="food-name">"The Weapon Rack" Popcorn Bar</div>
+          <div class="food-subtitle">"Choose your weapon... of flavor"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"The Weapon Rack" Popcorn Bar</div>
+          <div class="food-subtitle">"Choose your weapon... of flavor"</div>
+          <div class="food-description">Butter / Salt / Caramel / Spicy / Parmesan / M&amp;Ms</div>
+        </div>
       </div>
     </div>
 
     <p class="section-label">Dessert</p>
     <div class="food-cards-grid">
       <div class="food-card dessert">
-        <div class="food-name">"Shark Fin Soup" Jello Cups</div>
-        <div class="food-subtitle">"This is... uh... what is this?" "Shark fin soup."</div>
+        <div class="food-panel-back">
+          <div class="food-name">"Shark Fin Soup" Jello Cups</div>
+          <div class="food-subtitle">"This is... uh... what is this?"</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"Shark Fin Soup" Jello Cups</div>
+          <div class="food-subtitle">"This is... uh... what is this?" "Shark fin soup."</div>
+        </div>
       </div>
 
       <div class="food-card dessert">
-        <div class="food-name">"Dog Poop" No-Bake Cookies</div>
-        <div class="food-subtitle">"They look suspicious. They taste like perfection."</div>
+        <div class="food-panel-back">
+          <div class="food-name">"Dog Poop" No-Bake Cookies</div>
+          <div class="food-subtitle">"They look suspicious. They taste like perfection."</div>
+        </div>
+        <div class="food-panel">
+          <div class="food-name">"Dog Poop" No-Bake Cookies</div>
+          <div class="food-subtitle">"They look suspicious. They taste like perfection."</div>
+        </div>
       </div>
     </div>
   </div>
