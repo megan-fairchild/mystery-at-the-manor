@@ -6,6 +6,39 @@
   <title>Clue Cards - Mystery at the Manor</title>
   <link rel="stylesheet" href="../styles.css">
   <style>
+    .version-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .version-btn {
+      padding: 0.7rem 1.5rem;
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .version-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    .version-btn:hover:not(.active) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .clue-version { display: none; }
+    .clue-version.active { display: block; }
+
     .clue-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -24,7 +57,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      break-inside: avoid;
     }
 
     .clue-card.scarlet { border-color: #C41E3A; background: rgba(196, 30, 58, 0.08); }
@@ -61,6 +93,15 @@
       margin-top: 1rem;
     }
 
+    .clue-card img {
+      width: 100%;
+      max-width: 280px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
     .print-btn {
       display: block;
       margin: 2rem auto;
@@ -81,11 +122,24 @@
     }
 
     @media print {
-      .top-nav, .print-btn, .page-header .subtitle { display: none; }
+      .top-nav, .print-btn, .page-header, .version-toggle, .answer-key { display: none; }
       body { background: white; color: #1a1a1a; }
-      .clue-card { border-width: 2px; page-break-inside: avoid; }
-      .clue-card .clue-text { color: #1a1a1a; }
-      .clue-grid { grid-template-columns: repeat(2, 1fr); }
+      .clue-version { display: none !important; }
+      .clue-version.active { display: block !important; }
+      .clue-grid { display: block; }
+      .clue-card {
+        border-width: 3px;
+        page-break-after: always;
+        page-break-inside: avoid;
+        min-height: 90vh;
+        padding: 3rem 2rem;
+        margin: 0;
+      }
+      .clue-card:last-child { page-break-after: auto; }
+      .clue-card .clue-text { color: #1a1a1a; font-size: 1.4rem; }
+      .clue-card .clue-label { font-size: 1rem; }
+      .clue-card .clue-hint { font-size: 1rem; }
+      .clue-card img { max-width: 400px; height: 360px; }
     }
   </style>
 </head>
@@ -104,53 +158,108 @@
   </header>
 
   <div class="container">
+    <div class="version-toggle">
+      <button class="version-btn active" onclick="switchVersion('classic')" aria-label="Classic version">Classic</button>
+      <button class="version-btn" onclick="switchVersion('kids')" aria-label="Kid-friendly version">Kid-Friendly</button>
+    </div>
+
     <button class="print-btn" onclick="window.print()" aria-label="Print clue cards">&#128424; Print Clue Cards</button>
 
+    <!-- CLASSIC VERSION -->
+    <div id="version-classic" class="clue-version active">
     <div class="clue-grid">
       <div class="clue-card scarlet">
         <div class="clue-label">Scarlet Envelope</div>
-        <img src="../assets/clue-scarlet.png" alt="A blue dress with a red X over it" style="width:100%; max-width:200px; height:180px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
+        <img src="../assets/clue-scarlet.png" alt="A blue dress with a red X over it">
         <p class="clue-text">"The thief was NOT wearing blue."</p>
         <p class="clue-hint">This eliminates Mrs. Peacock as a suspect.</p>
       </div>
 
       <div class="clue-card mustard">
         <div class="clue-label">Mustard Envelope</div>
-        <img src="../assets/clue-mustard.png" alt="A crossed-out candlestick and rope" style="width:100%; max-width:200px; height:180px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
+        <img src="../assets/clue-mustard.png" alt="A crossed-out candlestick and rope">
         <p class="clue-text">"The weapon is NOT the candlestick and NOT the rope."</p>
         <p class="clue-hint">Only a few weapons remain...</p>
       </div>
 
       <div class="clue-card peacock">
         <div class="clue-label">Peacock Envelope</div>
-        <img src="../assets/clue-peacock.png" alt="A brass garden faucet with water splashing" style="width:100%; max-width:200px; height:180px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
+        <img src="../assets/clue-peacock.png" alt="A brass garden faucet with water splashing">
         <p class="clue-text">"The trophy was hidden somewhere with WATER nearby."</p>
         <p class="clue-hint">Think: where is there water outside?</p>
       </div>
 
       <div class="clue-card plum">
         <div class="clue-label">Plum Envelope</div>
-        <img src="../assets/clue-plum.png" alt="A swatch of emerald green velvet fabric" style="width:100%; max-width:200px; height:180px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
+        <img src="../assets/clue-plum.png" alt="A swatch of emerald green velvet fabric">
         <p class="clue-text">"The thief's favorite color is GREEN."</p>
         <p class="clue-hint">Which suspect likes green?</p>
       </div>
 
       <div class="clue-card green">
         <div class="clue-label">Green Envelope</div>
-        <img src="../assets/clue-green.png" alt="A silver kitchen knife on a cutting board" style="width:100%; max-width:200px; height:180px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
+        <img src="../assets/clue-green.png" alt="A silver kitchen knife on a cutting board">
         <p class="clue-text">"The weapon is something you use in the KITCHEN."</p>
         <p class="clue-hint">Not a wrench, not a lead pipe...</p>
       </div>
 
       <div class="clue-card white-card">
         <div class="clue-label">White Envelope</div>
-        <img src="../assets/clue-white.png" alt="A garden path leading outdoors at twilight" style="width:100%; max-width:200px; height:180px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
+        <img src="../assets/clue-white.png" alt="A garden path leading outdoors at twilight">
         <p class="clue-text">"The hiding spot is OUTSIDE, not inside the house."</p>
         <p class="clue-hint">The trophy is somewhere in the yard.</p>
       </div>
     </div>
+    </div>
 
-    <div class="day-card mt-3">
+    <!-- KID-FRIENDLY VERSION -->
+    <div id="version-kids" class="clue-version">
+    <div class="clue-grid">
+      <div class="clue-card scarlet">
+        <div class="clue-label">Scarlet Envelope</div>
+        <img src="../assets/clue-kids-scarlet.png" alt="Cartoon blue dress with a friendly red X">
+        <p class="clue-text">"The thief was NOT wearing blue."</p>
+        <p class="clue-hint">This eliminates Mrs. Peacock as a suspect.</p>
+      </div>
+
+      <div class="clue-card mustard">
+        <div class="clue-label">Mustard Envelope</div>
+        <img src="../assets/clue-kids-mustard.png" alt="Cartoon candlestick and rope with X marks">
+        <p class="clue-text">"The weapon is NOT the candlestick and NOT the rope."</p>
+        <p class="clue-hint">Only a few weapons remain...</p>
+      </div>
+
+      <div class="clue-card peacock">
+        <div class="clue-label">Peacock Envelope</div>
+        <img src="../assets/clue-kids-peacock.png" alt="Cartoon garden hose spraying water">
+        <p class="clue-text">"The trophy was hidden somewhere with WATER nearby."</p>
+        <p class="clue-hint">Think: where is there water outside?</p>
+      </div>
+
+      <div class="clue-card plum">
+        <div class="clue-label">Plum Envelope</div>
+        <img src="../assets/clue-kids-plum.png" alt="Cartoon green paint splotch">
+        <p class="clue-text">"The thief's favorite color is GREEN."</p>
+        <p class="clue-hint">Which suspect likes green?</p>
+      </div>
+
+      <div class="clue-card green">
+        <div class="clue-label">Green Envelope</div>
+        <img src="../assets/clue-kids-green.png" alt="Cartoon kitchen utensils on a cutting board">
+        <p class="clue-text">"The weapon is something you use in the KITCHEN."</p>
+        <p class="clue-hint">Not a wrench, not a lead pipe...</p>
+      </div>
+
+      <div class="clue-card white-card">
+        <div class="clue-label">White Envelope</div>
+        <img src="../assets/clue-kids-white.png" alt="Cartoon sunny backyard with tree and flowers">
+        <p class="clue-text">"The hiding spot is OUTSIDE, not inside the house."</p>
+        <p class="clue-hint">The trophy is somewhere in the yard.</p>
+      </div>
+    </div>
+    </div>
+
+    <div class="day-card mt-3 answer-key">
       <div class="day-body">
         <h3 style="color:var(--accent); font-family:'Playfair Display',serif; margin-bottom:0.75rem;">Answer Key (for the host only!)</h3>
         <p><strong>WHO:</strong> Mr. Green</p>
@@ -160,5 +269,14 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function switchVersion(version) {
+      document.querySelectorAll('.clue-version').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.version-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('version-' + version).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
 </body>
 </html>
